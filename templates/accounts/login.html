@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-8 col-lg-5">
+
+                <div class="border rounded p-4 bg-white">
+
+                    <div class="text-center mb-4">
+                        <h1 class="h3 fw-bold">
+                            Welcome Back
+                        </h1>
+
+                        <p class="text-muted">
+                            Login to continue shopping.
+                        </p>
+                    </div>
+
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">
+                                Username
+                            </label>
+
+                            <input
+                                type="text"
+                                name="username"
+                                id="username"
+                                class="form-control"
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                class="form-control"
+                                required
+                            >
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn hero-button w-100"
+                        >
+                            Login
+                        </button>
+
+                    </form>
+
+                    <p class="text-center mt-4 mb-0">
+                        Don't have an account?
+                        <a href="{% url 'register' %}">
+                            Register
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

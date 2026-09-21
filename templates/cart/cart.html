@@ -1,0 +1,127 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="py-5">
+  <div class="container">
+    <div class="mb-5">
+      <p class="text-uppercase fw-semibold text-muted">Shopping Cart</p>
+
+      <h1 class="display-5 fw-bold">Your Cart</h1>
+    </div>
+
+    {% if cart.items.all %}
+
+    <div class="row g-4">
+      <div class="col-12 col-lg-8">
+        {% for item in cart.items.all %}
+
+        <div class="border rounded p-4 mb-3 bg-white">
+          <div class="row align-items-center g-3">
+            <div class="col-12 col-sm-3 text-center">
+              <img
+                src="{{ item.product.image.url }}"
+                alt="{{ item.product.name }}"
+                class="img-fluid product-image"
+              />
+            </div>
+
+            <div class="col-12 col-sm-5">
+              <h3 class="h5 fw-bold">{{ item.product.name }}</h3>
+
+              <p class="text-muted mb-1">₹{{ item.product.price }}</p>
+
+              <div class="d-flex align-items-center gap-2">
+                <span> Quantity: </span>
+
+                <form
+                  method="POST"
+                  action="{% url 'decrease_quantity' item.id %}"
+                  class="d-inline"
+                >
+                  {% csrf_token %}
+
+                  <button
+                    type="submit"
+                    class="btn btn-outline-secondary btn-sm"
+                  >
+                    -
+                  </button>
+                </form>
+
+                <strong> {{ item.quantity }} </strong>
+
+                <form
+                  method="POST"
+                  action="{% url 'increase_quantity' item.id %}"
+                  class="d-inline"
+                >
+                  {% csrf_token %}
+
+                  <button
+                    type="submit"
+                    class="btn btn-outline-secondary btn-sm"
+                  >
+                    +
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4 text-sm-end">
+              <strong class="d-block mb-2"> ₹{{ item.product.price }} </strong>
+
+              <form method="POST" action="{% url 'remove_from_cart' item.id %}">
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-outline-danger btn-sm">
+                  Remove
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+
+      <div class="col-12 col-lg-4">
+        <div class="border rounded p-4 bg-white">
+          <h2 class="h4 fw-bold mb-4">Cart Summary</h2>
+
+          <div class="d-flex justify-content-between mb-3">
+            <span> Subtotal </span>
+
+            <strong> ₹{{ total }} </strong>
+          </div>
+
+          <hr />
+
+          <div class="d-flex justify-content-between mb-4">
+            <span class="fw-bold"> Total </span>
+
+            <strong> ₹{{ total }} </strong>
+          </div>
+
+          <a href="{% url 'checkout' %}" class="btn hero-button w-100">
+            Proceed to Checkout
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% else %}
+
+    <div class="border rounded p-5 bg-white text-center">
+      <h2 class="h4 fw-bold">Your cart is empty</h2>
+
+      <p class="text-muted mb-4">
+        Add some furniture to your cart to get started.
+      </p>
+
+      <a href="{% url 'home' %}" class="btn hero-button"> Continue Shopping </a>
+    </div>
+
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

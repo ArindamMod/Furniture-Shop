@@ -1,0 +1,430 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="mb-5">
+
+            <p class="text-uppercase fw-semibold text-muted">
+                Checkout
+            </p>
+
+            {% if razorpay_order_id %}
+                <h1 class="display-5 fw-bold">Payment</h1>
+            {% else %}
+                <h1 class="display-5 fw-bold">Delivery Details</h1>
+            {% endif %}
+
+        </div>
+
+
+        <div class="row g-5">
+
+
+            <!-- LEFT SECTION -->
+
+            <div class="col-12 col-lg-7">
+
+                <div class="border rounded p-4 bg-white">
+
+
+                    <!-- DELIVERY STAGE -->
+
+                    {% if not razorpay_order_id %}
+
+                        <h2 class="h4 fw-bold mb-4">
+                            Customer Information
+                        </h2>
+
+                        <form method="POST">
+
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="customer_name"
+                                    class="form-label"
+                                >
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="customer_name"
+                                    id="customer_name"
+                                    class="form-control"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="address"
+                                    class="form-label"
+                                >
+                                    Address
+                                </label>
+
+                                <textarea
+                                    name="address"
+                                    id="address"
+                                    class="form-control"
+                                    rows="3"
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label
+                                        for="city"
+                                        class="form-label"
+                                    >
+                                        City
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="city"
+                                        id="city"
+                                        class="form-control"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label
+                                        for="state"
+                                        class="form-label"
+                                    >
+                                        State
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="state"
+                                        id="state"
+                                        class="form-control"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label
+                                    for="pincode"
+                                    class="form-label"
+                                >
+                                    Pincode
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="pincode"
+                                    id="pincode"
+                                    class="form-control"
+                                    maxlength="10"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="btn hero-button w-100"
+                            >
+                                Continue to Payment
+                            </button>
+
+                        </form>
+
+                    {% endif %}
+
+
+                    <!-- PAYMENT STAGE -->
+
+                    {% if razorpay_order_id %}
+
+                        <h2 class="h4 fw-bold mb-4">
+                            Delivery Information
+                        </h2>
+
+
+                        <div class="mb-3">
+
+                            <strong>Full Name</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ customer_name }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <strong>Address</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ address }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <strong>City</strong>
+
+                                <p class="text-muted mb-0">
+                                    {{ city }}
+                                </p>
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <strong>State</strong>
+
+                                <p class="text-muted mb-0">
+                                    {{ state }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mb-4">
+
+                            <strong>Pincode</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ pincode }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="alert alert-success mb-4">
+
+                            Delivery details saved successfully.
+                            You can now proceed with payment.
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="pay-button"
+                            class="btn hero-button w-100"
+                        >
+                            Pay Now
+                        </button>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- ORDER SUMMARY -->
+
+            <div class="col-12 col-lg-5">
+
+                <div class="border rounded p-4 bg-white">
+
+                    <h2 class="h4 fw-bold mb-4">
+                        Order Summary
+                    </h2>
+
+
+                    {% for item in cart.items.all %}
+
+                        <div class="d-flex justify-content-between mb-3">
+
+                            <div>
+
+                                <strong>
+                                    {{ item.product.name }}
+                                </strong>
+
+                                <div class="text-muted small">
+                                    Quantity: {{ item.quantity }}
+                                </div>
+
+                            </div>
+
+                            <span>
+                                ₹{{ item.product.price }}
+                            </span>
+
+                        </div>
+
+                    {% endfor %}
+
+
+                    <hr>
+
+
+                    <div class="d-flex justify-content-between">
+
+                        <strong>
+                            Total
+                        </strong>
+
+                        <strong>
+                            ₹{{ total }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RAZORPAY -->
+
+{% if razorpay_order_id %}
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+
+        document
+            .getElementById("pay-button")
+            .addEventListener("click", function () {
+
+                const options = {
+
+                    key: "{{ razorpay_key_id }}",
+
+                    amount: "{{ total|floatformat:0 }}00",
+
+                    currency: "INR",
+
+                    name: "Furniture Shop",
+
+                    description: "Furniture Shop Order",
+
+                    order_id: "{{ razorpay_order_id }}",
+
+                    handler: function (response) {
+
+                        const formData = new FormData();
+
+
+                        formData.append(
+                            "order_id",
+                            "{{ order_id }}"
+                        );
+
+
+                        formData.append(
+                            "razorpay_order_id",
+                            response.razorpay_order_id
+                        );
+
+
+                        formData.append(
+                            "razorpay_payment_id",
+                            response.razorpay_payment_id
+                        );
+
+
+                        formData.append(
+                            "razorpay_signature",
+                            response.razorpay_signature
+                        );
+
+
+                        formData.append(
+                            "csrfmiddlewaretoken",
+                            "{{ csrf_token }}"
+                        );
+
+
+                        fetch(
+                            "{% url 'verify_payment' %}",
+                            {
+                                method: "POST",
+                                body: formData
+                            }
+                        )
+
+                        .then(response => response.json())
+
+                        .then(data => {
+
+                            if (data.success) {
+
+                                window.location.href =
+                                    "{% url 'order_success' 0 %}".replace(
+                                        "/0/",
+                                        "/" + data.order_id + "/"
+                                    );
+
+                            } else {
+
+                                alert(data.message);
+
+                            }
+
+                        })
+
+                        .catch(error => {
+
+                            console.error(error);
+
+                            alert(
+                                "Something went wrong while verifying the payment."
+                            );
+
+                        });
+
+                    }
+
+                };
+
+
+                const razorpay = new Razorpay(options);
+
+                razorpay.open();
+
+            });
+
+    </script>
+
+{% endif %}
+
+{% endblock %}
