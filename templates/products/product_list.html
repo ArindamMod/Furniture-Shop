@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h1 class="fw-bold">Our Products</h1>
+
+            {% if query %}
+                <p class="text-muted">
+                    Search results for "{{ query }}"
+                </p>
+            {% else %}
+                <p class="text-muted">
+                    Explore our furniture collection
+                </p>
+            {% endif %}
+        </div>
+
+        {% if products %}
+            <div class="row g-4">
+
+                {% for product in products %}
+
+                <div class="col-12 col-sm-6 col-lg-3">
+
+                    <div class="product-card border rounded p-4 h-100">
+
+                        <a href="{% url 'product_detail' product.pk %}"
+                           class="product-card-link text-decoration-none">
+
+                            <div class="mb-4 text-center">
+
+                                {% if product.image %}
+                                    <img
+                                        src="{{ product.image.url }}"
+                                        alt="{{ product.name }}"
+                                        class="img-fluid product-image"
+                                    >
+                                {% endif %}
+
+                            </div>
+
+                            <h3 class="h5 fw-bold">
+                                {{ product.name }}
+                            </h3>
+
+                        </a>
+
+                        <p class="text-muted">
+                            {{ product.description }}
+                        </p>
+
+                        <div class="mt-auto">
+
+                            <strong class="d-block mb-3">
+                                ₹{{ product.price }}
+                            </strong>
+
+                            {% if user.is_authenticated %}
+
+                                <form method="POST"
+                                      action="{% url 'add_to_cart' product.id %}">
+
+                                    {% csrf_token %}
+
+                                    <button type="submit"
+                                            class="btn product-button w-100">
+                                        Add to Cart
+                                    </button>
+
+                                </form>
+
+                            {% else %}
+
+                                <a href="{% url 'login' %}"
+                                   class="btn product-button w-100">
+                                    Login to Add
+                                </a>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="text-center py-5">
+
+                <h3>No products found</h3>
+
+                <p class="text-muted">
+                    {% if query %}
+                        Try searching for another product or category.
+                    {% else %}
+                        No products are available right now.
+                    {% endif %}
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

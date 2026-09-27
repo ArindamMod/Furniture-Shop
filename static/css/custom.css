@@ -2,246 +2,246 @@
    Furniture Shop - Custom Styles
    ========================================= */
 
-
 /* ---------- Colour Palette ---------- */
 
 :root {
-    --color-background: #f5f2ec;
-    --color-primary: #2f3430;
-    --color-secondary: #756451;
-    --color-accent: #b08d57;
+  --color-background: #f5f2ec;
+  --color-primary: #2f3430;
+  --color-secondary: #756451;
+  --color-accent: #b08d57;
 
-    --color-text: #292929;
-    --color-muted: #6b6b6b;
+  --color-text: #292929;
+  --color-muted: #6b6b6b;
 
-    --color-white: #ffffff;
-    --color-border: #dedbd4;
+  --color-white: #ffffff;
+  --color-border: #dedbd4;
 }
-
 
 /* ---------- Global Styles ---------- */
 
 body {
-    background-color: var(--color-background);
-    color: var(--color-text);
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
-
 
 /* ---------- Hero Section ---------- */
 
 .hero {
-    padding-top: 100px;
-    padding-bottom: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .hero h1 {
-    color: var(--color-primary);
-    max-width: 750px;
-    line-height: 1.1;
+  color: var(--color-primary);
+  max-width: 750px;
+  line-height: 1.1;
 }
 
 .hero p {
-    color: var(--color-text);
-    max-width: 650px;
+  color: var(--color-text);
+  max-width: 650px;
 }
 
 .hero .text-uppercase {
-    color: var(--color-secondary);
-    letter-spacing: 2px;
+  color: var(--color-secondary);
+  letter-spacing: 2px;
 }
-
 
 /* ---------- Hero Button ---------- */
 
 .hero-button {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    border: 1px solid var(--color-primary);
-    padding: 12px 24px;
-    transition: background-color 0.3s ease,
-                border-color 0.3s ease,
-                transform 0.3s ease;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  padding: 12px 24px;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .hero-button:hover {
-    background-color: var(--color-secondary);
-    border-color: var(--color-secondary);
-    color: var(--color-white);
-    transform: translateY(-2px);
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-white);
+  transform: translateY(-2px);
 }
 
 /* ---------- Categories Section ---------- */
 
 .categories {
-    padding-top: 80px;
-    padding-bottom: 80px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 .categories h2 {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .category-card {
-    background-color: var(--color-white);
-    border-color: var(--color-border) !important;
-    transition: transform 0.3s ease,
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
+  background-color: var(--color-white);
+  border-color: var(--color-border) !important;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .category-card h3 {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .category-card p {
-    color: var(--color-muted);
+  color: var(--color-muted);
 }
 
 .category-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(47, 52, 48, 0.08);
-    border-color: var(--color-accent) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(47, 52, 48, 0.08);
+  border-color: var(--color-accent) !important;
 }
 
 /* ---------- Category Button ---------- */
 
 .category-button {
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-    background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  background-color: transparent;
 }
 
 .category-button:hover {
-    color: var(--color-white);
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 /* ---------- Featured Products ---------- */
 
 .featured-products {
-    padding-top: 80px;
-    padding-bottom: 80px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 .featured-products h2 {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .product-card {
-    background-color: var(--color-white);
-    border-color: var(--color-border) !important;
-    transition: transform 0.3s ease,
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
+  background-color: var(--color-white);
+  border-color: var(--color-border) !important;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .product-card .d-flex {
-    margin-top: auto;
+  margin-top: auto;
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(47, 52, 48, 0.08);
-    border-color: var(--color-accent) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(47, 52, 48, 0.08);
+  border-color: var(--color-accent) !important;
 }
 
 .product-card h3 {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .product-card p {
-    color: var(--color-muted);
+  color: var(--color-muted);
 }
 
 .product-card strong {
-    color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 /* ---------- Product Button ---------- */
 
 .product-button {
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-    background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  background-color: transparent;
 }
 
 .product-button:hover {
-    color: var(--color-white);
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 /* ---------- Why Choose Us ---------- */
 
 .why-us {
-    padding-top: 80px;
-    padding-bottom: 80px;
-    background-color: var(--color-white);
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: var(--color-white);
 }
 
 .why-us h2 {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .why-us h3 {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .why-us p {
-    color: var(--color-muted);
+  color: var(--color-muted);
 }
 
 /* ---------- Why Choose Us Cards ---------- */
 
 .why-card {
-    border: 1px solid var(--color-border);
-    background-color: var(--color-background);
-    transition: transform 0.3s ease,
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .why-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(47, 52, 48, 0.06);
-    border-color: var(--color-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(47, 52, 48, 0.06);
+  border-color: var(--color-accent);
 }
 
 /* ---------- Call To Action ---------- */
 
 .cta {
-    background-color: #e8e1d5;
-    color: var(--color-primary);
-    padding-top: 80px;
-    padding-bottom: 80px;
+  background-color: #e8e1d5;
+  color: var(--color-primary);
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 .cta h2 {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .cta p {
-    color: var(--color-text);
+  color: var(--color-text);
 }
 
 .cta .btn {
-    background-color: var(--color-accent);
-    color: var(--color-white);
-    border: 1px solid var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border: 1px solid var(--color-accent);
 }
 
 .cta .btn:hover {
-    background-color: var(--color-secondary);
-    border-color: var(--color-secondary);
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
 }
 
 /* ---------- Global Typography ---------- */
 
 body {
-    line-height: 1.6;
+  line-height: 1.6;
 }
 
 h1,
@@ -250,11 +250,11 @@ h3,
 h4,
 h5,
 h6 {
-    line-height: 1.2;
+  line-height: 1.2;
 }
 
 section {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* ---------- Section Headings ---------- */
@@ -262,127 +262,123 @@ section {
 .categories h2,
 .featured-products h2,
 .why-us h2 {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .categories .text-center p,
 .featured-products .text-center p,
 .why-us .text-center p {
-    margin-top: 12px;
+  margin-top: 12px;
 }
 
 /* ---------- Navigation Bar ---------- */
 
 .navbar {
-    background-color: var(--color-background);
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .navbar-brand {
-    color: var(--color-primary);
-    font-weight: 700;
-    letter-spacing: 0.5px;
+  color: var(--color-primary);
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .navbar-brand:hover {
-    color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 .navbar .nav-link {
-    color: var(--color-text);
-    margin-left: 20px;
-    transition: color 0.3s ease;
+  color: var(--color-text);
+  margin-left: 20px;
+  transition: color 0.3s ease;
 }
 
 .navbar .nav-link:hover {
-    color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 /* ---------- Footer ---------- */
 
 .footer {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    padding-top: 60px;
-    padding-bottom: 25px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding-top: 60px;
+  padding-bottom: 25px;
 }
 
 .footer h3,
 .footer h4 {
-    color: var(--color-white);
+  color: var(--color-white);
 }
 
 .footer p {
-    color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .footer a {
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .footer a:hover {
-    color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .footer hr {
-    border-color: rgba(255, 255, 255, 0.2);
-    margin-top: 40px;
-    margin-bottom: 20px;
+  border-color: rgba(255, 255, 255, 0.2);
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 /* ---------- General Layout ---------- */
 
 .container {
-    max-width: 1200px;
+  max-width: 1200px;
 }
-
 
 /* ---------- Section Spacing ---------- */
 
 .categories,
 .featured-products,
 .why-us {
-    padding-top: 90px;
-    padding-bottom: 90px;
+  padding-top: 90px;
+  padding-bottom: 90px;
 }
-
 
 /* ---------- Mobile Spacing ---------- */
 
 @media (max-width: 767px) {
+  .hero {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
 
-    .hero {
-        padding-top: 70px;
-        padding-bottom: 70px;
-    }
+  .categories,
+  .featured-products,
+  .why-us {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
 
-    .categories,
-    .featured-products,
-    .why-us {
-        padding-top: 60px;
-        padding-bottom: 60px;
-    }
+  .cta {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
 
-    .cta {
-        padding-top: 60px;
-        padding-bottom: 60px;
-    }
-
-    .navbar {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
 }
 
 /* ---------- Typography ---------- */
 
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 h1,
@@ -392,7 +388,7 @@ h4,
 h5,
 h6,
 .navbar-brand {
-    font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 /* ---------- Hero Animation ---------- */
@@ -401,99 +397,318 @@ h6,
 .hero p,
 .hero .text-uppercase,
 .hero-button {
-    opacity: 0;
-    animation: heroFadeUp 0.8s ease forwards;
+  opacity: 0;
+  animation: heroFadeUp 0.8s ease forwards;
 }
 
 .hero .text-uppercase {
-    animation-delay: 0.1s;
+  animation-delay: 0.1s;
 }
 
 .hero h1 {
-    animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 
 .hero p {
-    animation-delay: 0.35s;
+  animation-delay: 0.35s;
 }
 
 .hero-button {
-    animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 
-
 @keyframes heroFadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---------- Reduced Motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-
-    .hero h1,
-    .hero p,
-    .hero .text-uppercase,
-    .hero-button {
-        opacity: 1;
-        animation: none;
-    }
-
+  .hero h1,
+  .hero p,
+  .hero .text-uppercase,
+  .hero-button {
+    opacity: 1;
+    animation: none;
+  }
 }
 
 /* ---------- Smooth Scrolling ---------- */
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 /* ---------- Hero Image ---------- */
 
 .hero-image {
-    overflow: hidden;
-    border-radius: 12px;
+  overflow: hidden;
+  border-radius: 12px;
 }
 
 .hero-image img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
 .hero-image:hover img {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 /* ---------- Category Images ---------- */
 
 .category-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
 }
 
 /* ---------- Product Images ---------- */
 
 .product-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-    transition: transform 0.4s ease;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
+/* =========================================================
+   V1.1 - NAVBAR, SEARCH & PRODUCT ACTIONS
+   ========================================================= */
+
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+.furniture-navbar {
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    padding: 14px 0;
+}
+
+.furniture-brand {
+    font-family: "Playfair Display", serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--color-primary) !important;
+    text-decoration: none;
+}
+
+.furniture-navbar .nav-link,
+.furniture-navbar .nav-action {
+    color: var(--color-text);
+    font-family: "Poppins", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.furniture-navbar .nav-link:hover,
+.furniture-navbar .nav-action:hover {
+    color: var(--color-accent);
+}
+
+
+/* =========================
+   SHOP / ACCOUNT DROPDOWNS
+   ========================= */
+
+.furniture-navbar .dropdown-menu {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.furniture-navbar .dropdown-item {
+    color: var(--color-text);
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    padding: 9px 14px;
+    border-radius: 5px;
+}
+
+.furniture-navbar .dropdown-item:hover {
+    background: var(--color-background);
+    color: var(--color-primary);
+}
+
+.furniture-navbar .dropdown-divider {
+    border-color: var(--color-border);
+}
+
+
+/* =========================
+   SEARCH BAR
+   ========================= */
+
+.navbar-search {
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-search .form-control {
+    border: 1px solid var(--color-border);
+    border-right: none;
+    border-radius: 7px 0 0 7px;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    padding: 10px 13px;
+    color: var(--color-text);
+}
+
+.navbar-search .form-control::placeholder {
+    color: var(--color-muted);
+}
+
+.navbar-search .form-control:focus {
+    border-color: var(--color-accent);
+    box-shadow: none;
+    outline: none;
+}
+
+.search-btn {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
+    border-radius: 0 7px 7px 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    transition: 0.2s ease;
+}
+
+.search-btn:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+
+/* =========================
+   NAVBAR ACTIONS
+   ========================= */
+
+.furniture-navbar .navbar-actions {
+    white-space: nowrap;
+}
+
+.furniture-navbar .navbar-actions .nav-action {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.furniture-navbar .navbar-actions .nav-action:hover {
+    color: var(--color-accent);
+}
+
+
+/* =========================
+   REGISTER BUTTON
+   ========================= */
+
+.nav-register {
+    background: var(--color-primary);
+    color: var(--color-white) !important;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    transition: 0.2s ease;
+}
+
+.nav-register:hover {
+    background: var(--color-accent);
+    color: var(--color-white) !important;
+}
+
+
+/* =========================
+   PRODUCT CARD LINK
+   ========================= */
+
+.product-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.product-card-link img {
+    width: 100%;
+    display: block;
+}
+
+.product-card-link:hover h3,
+.product-card-link:hover h5 {
+    color: var(--color-accent);
+}
+
+
+/* =========================
+   PRODUCT CART BUTTON
+   ========================= */
+
+.product-cart-btn {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
+    transition: 0.2s ease;
+}
+
+.product-cart-btn:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+
+/* =========================
+   MOBILE NAVBAR
+   ========================= */
+
+@media (max-width: 991.98px) {
+
+    .navbar-search {
+        min-width: 100%;
+        margin: 15px 0;
+    }
+
+    .furniture-navbar .navbar-actions {
+        align-items: flex-start !important;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px !important;
+    }
+
+    .furniture-navbar .navbar-nav {
+        margin-top: 10px;
+    }
+
+    .furniture-navbar .dropdown-menu {
+        box-shadow: none;
+        border-radius: 5px;
+    }
+}
