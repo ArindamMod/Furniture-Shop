@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Product, Category
-
+from .recommender import get_recommendations
 
 def product_list(request):
     query = request.GET.get('q', '').strip()
@@ -29,10 +29,23 @@ def product_list(request):
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
 
+    other_products = Product.objects.exclude(
+        pk=product.pk
+    ).select_related('category')
+
+    recommended_products = get_recommendations(
+        product,
+        other_products,
+        limit=3
+    )
+
     return render(
         request,
         'products/product_detail.html',
-        {'product': product}
+        {
+            'product': product,
+            'recommended_products': recommended_products,
+        }
     )
 
 
