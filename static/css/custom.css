@@ -494,221 +494,224 @@ html {
    V1.1 - NAVBAR, SEARCH & PRODUCT ACTIONS
    ========================================================= */
 
-
 /* =========================
    NAVBAR
    ========================= */
 
 .furniture-navbar {
-    background: var(--color-white);
-    border-bottom: 1px solid var(--color-border);
-    padding: 14px 0;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: 14px 0;
 }
 
 .furniture-brand {
-    font-family: "Playfair Display", serif;
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: var(--color-primary) !important;
-    text-decoration: none;
+  font-family: "Playfair Display", serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--color-primary) !important;
+  text-decoration: none;
 }
 
 .furniture-navbar .nav-link,
 .furniture-navbar .nav-action {
-    color: var(--color-text);
-    font-family: "Poppins", sans-serif;
-    font-size: 0.92rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.2s ease;
+  color: var(--color-text);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .furniture-navbar .nav-link:hover,
 .furniture-navbar .nav-action:hover {
-    color: var(--color-accent);
+  color: var(--color-accent);
 }
-
 
 /* =========================
    SHOP / ACCOUNT DROPDOWNS
    ========================= */
 
 .furniture-navbar .dropdown-menu {
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 8px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 .furniture-navbar .dropdown-item {
-    color: var(--color-text);
-    font-family: "Poppins", sans-serif;
-    font-size: 0.9rem;
-    padding: 9px 14px;
-    border-radius: 5px;
+  color: var(--color-text);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  padding: 9px 14px;
+  border-radius: 5px;
 }
 
 .furniture-navbar .dropdown-item:hover {
-    background: var(--color-background);
-    color: var(--color-primary);
+  background: var(--color-background);
+  color: var(--color-primary);
 }
 
 .furniture-navbar .dropdown-divider {
-    border-color: var(--color-border);
+  border-color: var(--color-border);
 }
-
 
 /* =========================
    SEARCH BAR
    ========================= */
 
 .navbar-search {
-    min-width: 280px;
-    display: flex;
-    align-items: center;
+  min-width: 280px;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-search .form-control {
-    border: 1px solid var(--color-border);
-    border-right: none;
-    border-radius: 7px 0 0 7px;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.9rem;
-    padding: 10px 13px;
-    color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-right: none;
+  border-radius: 7px 0 0 7px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  padding: 10px 13px;
+  color: var(--color-text);
 }
 
 .navbar-search .form-control::placeholder {
-    color: var(--color-muted);
+  color: var(--color-muted);
 }
 
 .navbar-search .form-control:focus {
-    border-color: var(--color-accent);
-    box-shadow: none;
-    outline: none;
+  border-color: var(--color-accent);
+  box-shadow: none;
+  outline: none;
 }
 
 .search-btn {
-    background: var(--color-primary);
-    color: var(--color-white);
-    border: 1px solid var(--color-primary);
-    border-radius: 0 7px 7px 0;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.9rem;
-    padding: 10px 14px;
-    transition: 0.2s ease;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-radius: 0 7px 7px 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  transition: 0.2s ease;
 }
 
 .search-btn:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-white);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
 }
-
 
 /* =========================
    NAVBAR ACTIONS
    ========================= */
 
 .furniture-navbar .navbar-actions {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 .furniture-navbar .navbar-actions .nav-action {
-    color: var(--color-text);
-    text-decoration: none;
+  color: var(--color-text);
+  text-decoration: none;
 }
 
 .furniture-navbar .navbar-actions .nav-action:hover {
-    color: var(--color-accent);
+  color: var(--color-accent);
 }
-
 
 /* =========================
    REGISTER BUTTON
    ========================= */
 
 .nav-register {
-    background: var(--color-primary);
-    color: var(--color-white) !important;
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 6px;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.9rem;
-    transition: 0.2s ease;
+  background: var(--color-primary);
+  color: var(--color-white) !important;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
 }
 
 .nav-register:hover {
-    background: var(--color-accent);
-    color: var(--color-white) !important;
+  background: var(--color-accent);
+  color: var(--color-white) !important;
 }
-
 
 /* =========================
    PRODUCT CARD LINK
    ========================= */
 
 .product-card-link {
-    display: block;
-    color: inherit;
-    text-decoration: none;
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .product-card-link img {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
 .product-card-link:hover h3,
 .product-card-link:hover h5 {
-    color: var(--color-accent);
+  color: var(--color-accent);
 }
-
 
 /* =========================
    PRODUCT CART BUTTON
    ========================= */
 
 .product-cart-btn {
-    background: var(--color-primary);
-    color: var(--color-white);
-    border: 1px solid var(--color-primary);
-    transition: 0.2s ease;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  transition: 0.2s ease;
 }
 
 .product-cart-btn:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-white);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
 }
-
 
 /* =========================
    MOBILE NAVBAR
    ========================= */
 
 @media (max-width: 991.98px) {
+  .navbar-search {
+    min-width: 100%;
+    margin: 15px 0;
+  }
 
-    .navbar-search {
-        min-width: 100%;
-        margin: 15px 0;
-    }
+  .furniture-navbar .navbar-actions {
+    align-items: flex-start !important;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px !important;
+  }
 
-    .furniture-navbar .navbar-actions {
-        align-items: flex-start !important;
-        flex-direction: column;
-        width: 100%;
-        gap: 10px !important;
-    }
+  .furniture-navbar .navbar-nav {
+    margin-top: 10px;
+  }
 
-    .furniture-navbar .navbar-nav {
-        margin-top: 10px;
-    }
-
-    .furniture-navbar .dropdown-menu {
-        box-shadow: none;
-        border-radius: 5px;
-    }
+  .furniture-navbar .dropdown-menu {
+    box-shadow: none;
+    border-radius: 5px;
+  }
+}
+.product-image-placeholder {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background);
+  border-radius: 6px;
+  color: var(--color-muted);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
 }
