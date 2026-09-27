@@ -715,3 +715,15 @@ html {
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
 }
+.product-image-placeholder {
+  width: 100%;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background);
+  border-radius: 6px;
+  color: var(--color-muted);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+}

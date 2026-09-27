@@ -24,7 +24,9 @@ def checkout(request):
 
     if request.method == 'POST':
         customer_name = request.POST.get('customer_name')
+        customer_email = request.POST.get('customer_email')
         address = request.POST.get('address')
+        address_line2 = request.POST.get('address_line2', '')
         city = request.POST.get('city')
         state = request.POST.get('state')
         pincode = request.POST.get('pincode')
@@ -37,12 +39,15 @@ def checkout(request):
         order = Order.objects.create(
             user=request.user,
             customer_name=customer_name,
+            customer_email=customer_email,
             address=address,
+            address_line2=address_line2,
             city=city,
             state=state,
             pincode=pincode,
             total_amount=total,
-        )
+            )
+        
 
         for item in cart.items.all():
             OrderItem.objects.create(
@@ -71,7 +76,8 @@ def checkout(request):
             'razorpay_key_id': config('RAZORPAY_KEY_ID'),
             'razorpay_order_id': razorpay_order['id'],
             'order_id': order.id,
-
+            'customer_email': customer_email,
+            'address_line2': address_line2,
             'customer_name': customer_name,
             'address': address,
             'city': city,
@@ -89,8 +95,12 @@ def checkout(request):
         request,
         'orders/checkout.html',
         {
+            
             'cart': cart,
             'total': total,
+            'customer_name': request.user.get_full_name() or request.user.username,
+            'customer_email': request.user.email,
+            
         }
     )
 
