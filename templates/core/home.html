@@ -143,7 +143,12 @@
   <div class="container">
     <div class="text-center mb-5">
       <h2 class="fw-bold">Featured Products</h2>
+
       <p class="text-muted">A few of our favourite pieces for your home.</p>
+
+      <a href="{% url 'product_list' %}" class="btn btn-outline-dark mt-2">
+        View All Products
+      </a>
     </div>
 
     <div class="row g-4">
@@ -151,27 +156,54 @@
 
       <div class="col-12 col-sm-6 col-lg-3">
         <div class="product-card border rounded p-4 h-100">
-          <div class="mb-4 text-center">
-            <img
-              src="{{ product.image.url }}"
-              alt="{{ product.name }}"
-              class="img-fluid product-image"
-            />
-          </div>
+          <!-- Product Image + Name → Product Detail -->
+          <a
+            href="{% url 'product_detail' product.pk %}"
+            class="product-card-link text-decoration-none"
+          >
+            <div class="mb-4 text-center">
+              {% if product.image %}
 
-          <h3 class="h5 fw-bold">{{ product.name }}</h3>
+              <img
+                src="{{ product.image.url }}"
+                alt="{{ product.name }}"
+                class="img-fluid product-image"
+              />
 
+              {% else %}
+
+              <div class="product-image-placeholder">No Image</div>
+
+              {% endif %}
+            </div>
+
+            <h3 class="h5 fw-bold">{{ product.name }}</h3>
+          </a>
+
+          <!-- Description -->
           <p class="text-muted">{{ product.description }}</p>
 
-          <div class="d-flex justify-content-between align-items-center">
-            <strong>₹{{ product.price }}</strong>
+          <!-- Price + Add to Cart -->
+          <div class="mt-auto">
+            <strong class="d-block mb-3"> ₹{{ product.price }} </strong>
 
-            <a
-              href="{% url 'product_detail' product.pk %}"
-              class="btn product-button btn-sm"
-            >
-              View
+            {% if user.is_authenticated %}
+
+            <form method="POST" action="{% url 'add_to_cart' product.id %}">
+              {% csrf_token %}
+
+              <button type="submit" class="btn product-button w-100">
+                Add to Cart
+              </button>
+            </form>
+
+            {% else %}
+
+            <a href="{% url 'login' %}" class="btn product-button w-100">
+              Login to Add
             </a>
+
+            {% endif %}
           </div>
         </div>
       </div>
@@ -239,7 +271,9 @@
         lifestyle.
       </p>
 
-      <a href="#" class="btn btn-dark btn-lg px-4"> Shop Now </a>
+      <a href="{% url 'product_list' %}" class="btn btn-dark btn-lg px-4">
+        Shop Now
+      </a>
     </div>
   </div>
 </section>

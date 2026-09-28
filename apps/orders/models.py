@@ -27,13 +27,11 @@ class Order(models.Model):
     )
 
     customer_name = models.CharField(max_length=150)
-
+    customer_email = models.EmailField(default='')
     address = models.TextField()
-
+    address_line2 = models.TextField(blank=True, default='')
     city = models.CharField(max_length=100)
-
     state = models.CharField(max_length=100)
-
     pincode = models.CharField(max_length=10)
 
     total_amount = models.DecimalField(

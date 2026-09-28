@@ -1,43 +1,42 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
+<section class="order-success-page py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="order-success-card text-center">
+          <!-- Success Icon -->
+          <div class="order-success-icon">✓</div>
 
-<section class="py-5">
-    <div class="container">
+          <p class="order-success-label">ORDER CONFIRMED</p>
 
-        <div class="row justify-content-center">
+          <h1>Order Placed Successfully!</h1>
 
-            <div class="col-12 col-md-8 col-lg-6">
+          <p class="order-success-message">Thank you for shopping with us.</p>
 
-                <div class="border rounded p-5 bg-white text-center">
+          <div class="order-number">
+            <span>Order Number</span>
 
-                    <h1 class="h2 fw-bold mb-3">
-                        Order Placed Successfully!
-                    </h1>
+            <strong> #{{ order.id }} </strong>
+          </div>
 
-                    <p class="text-muted mb-3">
-                        Thank you for shopping with us.
-                    </p>
+          <p class="order-success-status">
+            Your payment has been confirmed and your order is being processed.
+          </p>
 
-                    <p class="mb-4">
-                        Your order number is:
-                        <strong>#{{ order.id }}</strong>
-                    </p>
+          <div class="order-success-actions">
+            <a href="{% url 'my_orders' %}" class="btn hero-button">
+              View My Orders
+            </a>
 
-                    <a
-                        href="{% url 'home' %}"
-                        class="btn hero-button"
-                    >
-                        Continue Shopping
-                    </a>
-
-                </div>
-
-            </div>
-
+            <a href="{% url 'home' %}" class="btn order-secondary-button">
+              Continue Shopping
+            </a>
+          </div>
         </div>
-
+      </div>
     </div>
+  </div>
 </section>
 
 {% endblock %}

@@ -1,430 +1,371 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
+<section class="checkout-page py-5">
+  <div class="container">
+    <!-- Page Heading -->
+    <div class="checkout-heading mb-5">
+      <p class="text-uppercase fw-semibold text-muted mb-2">Checkout</p>
 
-<section class="py-5">
+      {% if razorpay_order_id %}
 
-    <div class="container">
+      <h1 class="display-5 fw-bold">Payment</h1>
 
-        <div class="mb-5">
+      {% else %}
 
-            <p class="text-uppercase fw-semibold text-muted">
-                Checkout
-            </p>
+      <h1 class="display-5 fw-bold">Delivery Details</h1>
 
-            {% if razorpay_order_id %}
-                <h1 class="display-5 fw-bold">Payment</h1>
-            {% else %}
-                <h1 class="display-5 fw-bold">Delivery Details</h1>
-            {% endif %}
-
-        </div>
-
-
-        <div class="row g-5">
-
-
-            <!-- LEFT SECTION -->
-
-            <div class="col-12 col-lg-7">
-
-                <div class="border rounded p-4 bg-white">
-
-
-                    <!-- DELIVERY STAGE -->
-
-                    {% if not razorpay_order_id %}
-
-                        <h2 class="h4 fw-bold mb-4">
-                            Customer Information
-                        </h2>
-
-                        <form method="POST">
-
-                            {% csrf_token %}
-
-                            <div class="mb-3">
-
-                                <label
-                                    for="customer_name"
-                                    class="form-label"
-                                >
-                                    Full Name
-                                </label>
-
-                                <input
-                                    type="text"
-                                    name="customer_name"
-                                    id="customer_name"
-                                    class="form-control"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="mb-3">
-
-                                <label
-                                    for="address"
-                                    class="form-label"
-                                >
-                                    Address
-                                </label>
-
-                                <textarea
-                                    name="address"
-                                    id="address"
-                                    class="form-control"
-                                    rows="3"
-                                    required
-                                ></textarea>
-
-                            </div>
-
-
-                            <div class="row">
-
-                                <div class="col-md-6 mb-3">
-
-                                    <label
-                                        for="city"
-                                        class="form-label"
-                                    >
-                                        City
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        name="city"
-                                        id="city"
-                                        class="form-control"
-                                        required
-                                    >
-
-                                </div>
-
-
-                                <div class="col-md-6 mb-3">
-
-                                    <label
-                                        for="state"
-                                        class="form-label"
-                                    >
-                                        State
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        name="state"
-                                        id="state"
-                                        class="form-control"
-                                        required
-                                    >
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="mb-4">
-
-                                <label
-                                    for="pincode"
-                                    class="form-label"
-                                >
-                                    Pincode
-                                </label>
-
-                                <input
-                                    type="text"
-                                    name="pincode"
-                                    id="pincode"
-                                    class="form-control"
-                                    maxlength="10"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <button
-                                type="submit"
-                                class="btn hero-button w-100"
-                            >
-                                Continue to Payment
-                            </button>
-
-                        </form>
-
-                    {% endif %}
-
-
-                    <!-- PAYMENT STAGE -->
-
-                    {% if razorpay_order_id %}
-
-                        <h2 class="h4 fw-bold mb-4">
-                            Delivery Information
-                        </h2>
-
-
-                        <div class="mb-3">
-
-                            <strong>Full Name</strong>
-
-                            <p class="text-muted mb-0">
-                                {{ customer_name }}
-                            </p>
-
-                        </div>
-
-
-                        <div class="mb-3">
-
-                            <strong>Address</strong>
-
-                            <p class="text-muted mb-0">
-                                {{ address }}
-                            </p>
-
-                        </div>
-
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-3">
-
-                                <strong>City</strong>
-
-                                <p class="text-muted mb-0">
-                                    {{ city }}
-                                </p>
-
-                            </div>
-
-
-                            <div class="col-md-6 mb-3">
-
-                                <strong>State</strong>
-
-                                <p class="text-muted mb-0">
-                                    {{ state }}
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="mb-4">
-
-                            <strong>Pincode</strong>
-
-                            <p class="text-muted mb-0">
-                                {{ pincode }}
-                            </p>
-
-                        </div>
-
-
-                        <div class="alert alert-success mb-4">
-
-                            Delivery details saved successfully.
-                            You can now proceed with payment.
-
-                        </div>
-
-
-                        <button
-                            type="button"
-                            id="pay-button"
-                            class="btn hero-button w-100"
-                        >
-                            Pay Now
-                        </button>
-
-                    {% endif %}
-
-                </div>
-
-            </div>
-
-
-            <!-- ORDER SUMMARY -->
-
-            <div class="col-12 col-lg-5">
-
-                <div class="border rounded p-4 bg-white">
-
-                    <h2 class="h4 fw-bold mb-4">
-                        Order Summary
-                    </h2>
-
-
-                    {% for item in cart.items.all %}
-
-                        <div class="d-flex justify-content-between mb-3">
-
-                            <div>
-
-                                <strong>
-                                    {{ item.product.name }}
-                                </strong>
-
-                                <div class="text-muted small">
-                                    Quantity: {{ item.quantity }}
-                                </div>
-
-                            </div>
-
-                            <span>
-                                ₹{{ item.product.price }}
-                            </span>
-
-                        </div>
-
-                    {% endfor %}
-
-
-                    <hr>
-
-
-                    <div class="d-flex justify-content-between">
-
-                        <strong>
-                            Total
-                        </strong>
-
-                        <strong>
-                            ₹{{ total }}
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
+      {% endif %}
     </div>
 
-</section>
+    <div class="row g-4 g-lg-5">
+      <!-- =========================
+                 LEFT: DELIVERY / PAYMENT
+                 ========================= -->
 
+      <div class="col-12 col-lg-7">
+        <div class="checkout-card">
+          <!-- DELIVERY STAGE -->
+
+          {% if not razorpay_order_id %}
+
+          <div class="checkout-card-heading">
+            <span class="checkout-step"> 01 </span>
+
+            <div>
+              <h2>Customer Information</h2>
+
+              <p>Enter your delivery details.</p>
+            </div>
+          </div>
+
+          <form method="POST">
+            {% csrf_token %}
+
+            <!-- Full Name -->
+
+            <div class="checkout-field">
+              <label for="customer_name" class="form-label"> Full Name </label>
+
+              <input
+                type="text"
+                name="customer_name"
+                id="customer_name"
+                class="form-control checkout-input"
+                value="{{ customer_name }}"
+                required
+              />
+            </div>
+
+            <!-- Email -->
+
+            <div class="checkout-field">
+              <label for="customer_email" class="form-label"> Email </label>
+
+              <input
+                type="email"
+                name="customer_email"
+                id="customer_email"
+                class="form-control checkout-input"
+                value="{{ customer_email }}"
+                required
+              />
+            </div>
+
+            <!-- Address Line 1 -->
+
+            <div class="checkout-field">
+              <label for="address" class="form-label"> Address Line 1 </label>
+
+              <textarea
+                name="address"
+                id="address"
+                class="form-control checkout-input"
+                rows="2"
+                required
+              ></textarea>
+            </div>
+
+            <!-- Address Line 2 -->
+
+            <div class="checkout-field">
+              <label for="address_line2" class="form-label">
+                Address Line 2
+                <span>(Optional)</span>
+              </label>
+
+              <textarea
+                name="address_line2"
+                id="address_line2"
+                class="form-control checkout-input"
+                rows="2"
+              ></textarea>
+            </div>
+
+            <!-- City + State -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="checkout-field">
+                  <label for="city" class="form-label"> City </label>
+
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    class="form-control checkout-input"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="checkout-field">
+                  <label for="state" class="form-label"> State </label>
+
+                  <input
+                    type="text"
+                    name="state"
+                    id="state"
+                    class="form-control checkout-input"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Pincode -->
+
+            <div class="checkout-field checkout-pincode">
+              <label for="pincode" class="form-label"> Pincode </label>
+
+              <input
+                type="text"
+                name="pincode"
+                id="pincode"
+                class="form-control checkout-input"
+                maxlength="10"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="btn hero-button w-100 checkout-main-button"
+            >
+              Continue to Payment
+            </button>
+          </form>
+
+          {% endif %}
+
+          <!-- =========================
+                         PAYMENT STAGE
+                         ========================= -->
+
+          {% if razorpay_order_id %}
+
+          <div class="checkout-card-heading">
+            <span class="checkout-step"> 02 </span>
+
+            <div>
+              <h2>Delivery Information</h2>
+
+              <p>Review your details before payment.</p>
+            </div>
+          </div>
+
+          <div class="delivery-review">
+            <div class="delivery-review-item">
+              <span>Full Name</span>
+
+              <strong> {{ customer_name }} </strong>
+            </div>
+
+            <div class="delivery-review-item">
+              <span>Email</span>
+
+              <strong> {{ customer_email }} </strong>
+            </div>
+
+            <div class="delivery-review-item">
+              <span>Address</span>
+
+              <strong> {{ address }} </strong>
+
+              {% if address_line2 %}
+
+              <strong> {{ address_line2 }} </strong>
+
+              {% endif %}
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="delivery-review-item">
+                  <span>City</span>
+
+                  <strong> {{ city }} </strong>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="delivery-review-item">
+                  <span>State</span>
+
+                  <strong> {{ state }} </strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="delivery-review-item">
+              <span>Pincode</span>
+
+              <strong> {{ pincode }} </strong>
+            </div>
+          </div>
+
+          <div class="payment-notice">
+            <strong> Delivery details saved </strong>
+
+            <p>
+              Your delivery information has been saved. You can now proceed with
+              your payment.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            id="pay-button"
+            class="btn hero-button w-100 checkout-main-button"
+          >
+            Pay Now
+          </button>
+
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- =========================
+                 RIGHT: ORDER SUMMARY
+                 ========================= -->
+
+      <div class="col-12 col-lg-5">
+        <div class="checkout-summary">
+          <div class="checkout-summary-heading">
+            <h2>Order Summary</h2>
+
+            <span>
+              {{ cart.items.count }} item{{ cart.items.count|pluralize }}
+            </span>
+          </div>
+
+          <div class="checkout-products">
+            {% for item in cart.items.all %}
+
+            <div class="checkout-product">
+              <div class="checkout-product-image">
+                {% if item.product.image %}
+
+                <img
+                  src="{{ item.product.image.url }}"
+                  alt="{{ item.product.name }}"
+                />
+
+                {% else %}
+
+                <div class="checkout-product-placeholder">No Image</div>
+
+                {% endif %}
+              </div>
+
+              <div class="checkout-product-info">
+                <strong> {{ item.product.name }} </strong>
+
+                <span> Quantity: {{ item.quantity }} </span>
+              </div>
+
+              <strong class="checkout-product-price">
+                ₹{{ item.product.price }}
+              </strong>
+            </div>
+
+            {% endfor %}
+          </div>
+
+          <div class="checkout-summary-total">
+            <span> Total </span>
+
+            <strong> ₹{{ total }} </strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- RAZORPAY -->
 
 {% if razorpay_order_id %}
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-    <script>
+<script>
+  document.getElementById("pay-button").addEventListener("click", function () {
+    const options = {
+      key: "{{ razorpay_key_id }}",
 
-        document
-            .getElementById("pay-button")
-            .addEventListener("click", function () {
+      amount: "{{ total|floatformat:0 }}00",
 
-                const options = {
+      currency: "INR",
 
-                    key: "{{ razorpay_key_id }}",
+      name: "Furniture Shop",
 
-                    amount: "{{ total|floatformat:0 }}00",
+      description: "Furniture Shop Order",
 
-                    currency: "INR",
+      order_id: "{{ razorpay_order_id }}",
 
-                    name: "Furniture Shop",
+      handler: function (response) {
+        const formData = new FormData();
 
-                    description: "Furniture Shop Order",
+        formData.append("order_id", "{{ order_id }}");
 
-                    order_id: "{{ razorpay_order_id }}",
+        formData.append("razorpay_order_id", response.razorpay_order_id);
 
-                    handler: function (response) {
+        formData.append("razorpay_payment_id", response.razorpay_payment_id);
 
-                        const formData = new FormData();
+        formData.append("razorpay_signature", response.razorpay_signature);
 
+        formData.append("csrfmiddlewaretoken", "{{ csrf_token }}");
 
-                        formData.append(
-                            "order_id",
-                            "{{ order_id }}"
-                        );
+        fetch("{% url 'verify_payment' %}", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
 
+          .then((data) => {
+            if (data.success) {
+              window.location.href = "{% url 'order_success' 0 %}".replace(
+                "/0/",
+                "/" + data.order_id + "/",
+              );
+            } else {
+              alert(data.message);
+            }
+          })
 
-                        formData.append(
-                            "razorpay_order_id",
-                            response.razorpay_order_id
-                        );
+          .catch((error) => {
+            console.error(error);
 
+            alert("Something went wrong while verifying the payment.");
+          });
+      },
+    };
 
-                        formData.append(
-                            "razorpay_payment_id",
-                            response.razorpay_payment_id
-                        );
+    const razorpay = new Razorpay(options);
 
+    razorpay.open();
+  });
+</script>
 
-                        formData.append(
-                            "razorpay_signature",
-                            response.razorpay_signature
-                        );
-
-
-                        formData.append(
-                            "csrfmiddlewaretoken",
-                            "{{ csrf_token }}"
-                        );
-
-
-                        fetch(
-                            "{% url 'verify_payment' %}",
-                            {
-                                method: "POST",
-                                body: formData
-                            }
-                        )
-
-                        .then(response => response.json())
-
-                        .then(data => {
-
-                            if (data.success) {
-
-                                window.location.href =
-                                    "{% url 'order_success' 0 %}".replace(
-                                        "/0/",
-                                        "/" + data.order_id + "/"
-                                    );
-
-                            } else {
-
-                                alert(data.message);
-
-                            }
-
-                        })
-
-                        .catch(error => {
-
-                            console.error(error);
-
-                            alert(
-                                "Something went wrong while verifying the payment."
-                            );
-
-                        });
-
-                    }
-
-                };
-
-
-                const razorpay = new Razorpay(options);
-
-                razorpay.open();
-
-            });
-
-    </script>
-
-{% endif %}
-
-{% endblock %}
+{% endif %} {% endblock %}
