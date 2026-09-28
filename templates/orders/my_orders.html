@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
-<section class="py-5">
+<section class="orders-page py-5">
   <div class="container">
-    <div class="mb-5">
+    <!-- Page Heading -->
+    <div class="orders-heading mb-5">
       <p class="text-uppercase fw-semibold text-muted">Account</p>
 
       <h1 class="display-5 fw-bold">My Orders</h1>
@@ -14,46 +15,85 @@
 
     {% if orders %}
 
-    <div class="row g-4">
+    <div class="orders-list">
       {% for order in orders %}
 
-      <div class="col-12">
-        <div class="border rounded p-4 bg-white">
-          <div class="row align-items-center g-3">
-            <div class="col-12 col-md-3">
-              <p class="text-muted mb-1">Order</p>
+      <div class="order-card">
+        <!-- Order Header -->
+        <div class="order-card-header">
+          <div>
+            <span class="order-label"> ORDER </span>
 
-              <h2 class="h5 fw-bold mb-0">#{{ order.id }}</h2>
-            </div>
+            <h2>#{{ order.id }}</h2>
+          </div>
 
-            <div class="col-6 col-md-3">
-              <p class="text-muted mb-1">Date</p>
+          <!-- Status -->
 
-              <span> {{ order.created_at|date:"d M Y" }} </span>
-            </div>
+          <div class="order-status">
+            <span class="order-label"> STATUS </span>
 
-            <div class="col-6 col-md-3">
-              <p class="text-muted mb-1">Total</p>
+            {% if order.order_status == 'pending' %}
 
-              <strong> ₹{{ order.total_amount }} </strong>
-            </div>
+            <span class="order-status-badge status-pending">
+              {{ order.get_order_status_display }}
+            </span>
 
-            <div class="col-12 col-md-3">
-              <p class="text-muted mb-1">Status</p>
+            {% elif order.order_status == 'confirmed' %}
 
-              <span class="badge bg-secondary">
-                {{ order.get_order_status_display }}
-              </span>
+            <span class="order-status-badge status-confirmed">
+              {{ order.get_order_status_display }}
+            </span>
 
-              <div class="mt-2">
-                <a
-                  href="{% url 'order_detail' order.id %}"
-                  class="btn product-button btn-sm"
-                >
-                  View Details
-                </a>
-              </div>
-            </div>
+            {% elif order.order_status == 'processing' %}
+
+            <span class="order-status-badge status-processing">
+              {{ order.get_order_status_display }}
+            </span>
+
+            {% elif order.order_status == 'shipped' %}
+
+            <span class="order-status-badge status-shipped">
+              {{ order.get_order_status_display }}
+            </span>
+
+            {% elif order.order_status == 'delivered' %}
+
+            <span class="order-status-badge status-delivered">
+              {{ order.get_order_status_display }}
+            </span>
+
+            {% elif order.order_status == 'cancelled' %}
+
+            <span class="order-status-badge status-cancelled">
+              {{ order.get_order_status_display }}
+            </span>
+
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Order Information -->
+
+        <div class="order-card-info">
+          <div class="order-info-item">
+            <span> Order Date </span>
+
+            <strong> {{ order.created_at|date:"d M Y" }} </strong>
+          </div>
+
+          <div class="order-info-item">
+            <span> Total Amount </span>
+
+            <strong> ₹{{ order.total_amount }} </strong>
+          </div>
+
+          <div class="order-info-item order-action">
+            <a
+              href="{% url 'order_detail' order.id %}"
+              class="btn order-details-btn"
+            >
+              View Order Details
+            </a>
           </div>
         </div>
       </div>
@@ -63,10 +103,14 @@
 
     {% else %}
 
-    <div class="border rounded p-5 bg-white text-center">
-      <h2 class="h4 fw-bold">No orders yet</h2>
+    <!-- Empty Orders -->
 
-      <p class="text-muted mb-4">Your completed orders will appear here.</p>
+    <div class="empty-orders">
+      <div class="empty-orders-icon">📦</div>
+
+      <h2>No orders yet</h2>
+
+      <p>Your completed orders will appear here.</p>
 
       <a href="{% url 'home' %}" class="btn hero-button"> Start Shopping </a>
     </div>

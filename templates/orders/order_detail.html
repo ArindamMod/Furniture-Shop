@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
-<section class="py-5">
+<section class="order-detail-page py-5">
   <div class="container">
-    <div class="mb-5">
+    <!-- Page Heading -->
+    <div class="order-detail-heading mb-5">
       <p class="text-uppercase fw-semibold text-muted">Order Details</p>
 
       <h1 class="display-5 fw-bold">Order #{{ order.id }}</h1>
@@ -13,34 +14,55 @@
     </div>
 
     <div class="row g-4">
-      <!-- Order Items -->
+      <!-- LEFT SIDE -->
       <div class="col-12 col-lg-8">
-        <div class="border rounded p-4 bg-white">
-          <h2 class="h4 fw-bold mb-4">Ordered Products</h2>
+        <!-- Ordered Products -->
+
+        <div class="order-detail-card mb-4">
+          <div class="order-detail-card-heading">
+            <h2>Ordered Products</h2>
+
+            <span>
+              {{ order.items.count }} item{{ order.items.count|pluralize }}
+            </span>
+          </div>
 
           {% for item in order.items.all %}
 
-          <div class="row align-items-center g-3 mb-4">
-            <div class="col-12 col-sm-3 text-center">
+          <div class="ordered-product">
+            <!-- Product Image -->
+
+            <div class="ordered-product-image">
               {% if item.product.image %}
+
               <img
                 src="{{ item.product.image.url }}"
                 alt="{{ item.product.name }}"
-                class="img-fluid product-image"
               />
+
+              {% else %}
+
+              <div class="product-image-placeholder">No Image</div>
+
               {% endif %}
             </div>
 
-            <div class="col-12 col-sm-6">
-              <h3 class="h5 fw-bold">{{ item.product.name }}</h3>
+            <!-- Product Information -->
 
-              <p class="text-muted mb-1">Quantity: {{ item.quantity }}</p>
+            <div class="ordered-product-info">
+              <h3>{{ item.product.name }}</h3>
 
-              <p class="text-muted mb-0">Price: ₹{{ item.price }}</p>
+              <p>Quantity: {{ item.quantity }}</p>
+
+              <p>Price: ₹{{ item.price }}</p>
             </div>
 
-            <div class="col-12 col-sm-3 text-sm-end">
-              <strong> ₹{{ item.subtotal }}</strong>
+            <!-- Subtotal -->
+
+            <div class="ordered-product-total">
+              <span> Subtotal </span>
+
+              <strong> ₹{{ item.subtotal }} </strong>
             </div>
           </div>
 
@@ -48,72 +70,155 @@
           <hr />
           {% endif %} {% endfor %}
         </div>
+
+        <!-- Delivery Information -->
+
+        <div class="order-detail-card">
+          <div class="order-detail-card-heading">
+            <h2>Delivery Information</h2>
+          </div>
+
+          <div class="delivery-information">
+            <div class="delivery-item">
+              <span> Full Name </span>
+
+              <strong> {{ order.customer_name }} </strong>
+            </div>
+
+            <div class="delivery-item">
+              <span> Email </span>
+
+              <strong> {{ order.customer_email }} </strong>
+            </div>
+
+            <div class="delivery-item">
+              <span> Address </span>
+
+              <strong> {{ order.address }} </strong>
+            </div>
+
+            {% if order.address_line2 %}
+
+            <div class="delivery-item">
+              <span> Address Line 2 </span>
+
+              <strong> {{ order.address_line2 }} </strong>
+            </div>
+
+            {% endif %}
+
+            <div class="delivery-row">
+              <div class="delivery-item">
+                <span> City </span>
+
+                <strong> {{ order.city }} </strong>
+              </div>
+
+              <div class="delivery-item">
+                <span> State </span>
+
+                <strong> {{ order.state }} </strong>
+              </div>
+
+              <div class="delivery-item">
+                <span> Pincode </span>
+
+                <strong> {{ order.pincode }} </strong>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Order Summary -->
-      <div class="col-12 col-lg-4">
-        <div class="border rounded p-4 bg-white mb-4">
-          <h2 class="h4 fw-bold mb-4">Order Summary</h2>
+      <!-- RIGHT SIDE -->
 
-          <div class="d-flex justify-content-between mb-3">
+      <div class="col-12 col-lg-4">
+        <!-- Order Summary -->
+
+        <div class="order-detail-card mb-4">
+          <div class="order-detail-card-heading">
+            <h2>Order Summary</h2>
+          </div>
+
+          <div class="order-summary-total">
             <span> Total </span>
 
             <strong> ₹{{ order.total_amount }} </strong>
           </div>
 
-          <div class="d-flex justify-content-between mb-3">
+          <div class="order-summary-row">
             <span> Payment </span>
 
-            <span class="badge bg-secondary">
+            {% if order.payment_status == 'paid' %}
+
+            <span class="order-status-badge status-paid">
               {{ order.get_payment_status_display }}
             </span>
+
+            {% elif order.payment_status == 'failed' %}
+
+            <span class="order-status-badge status-failed">
+              {{ order.get_payment_status_display }}
+            </span>
+
+            {% else %}
+
+            <span class="order-status-badge status-payment-pending">
+              {{ order.get_payment_status_display }}
+            </span>
+
+            {% endif %}
           </div>
 
-          <div class="d-flex justify-content-between">
+          <div class="order-summary-row">
             <span> Order Status </span>
 
-            <span class="badge bg-secondary">
+            {% if order.order_status == 'pending' %}
+
+            <span class="order-status-badge status-pending">
               {{ order.get_order_status_display }}
             </span>
+
+            {% elif order.order_status == 'confirmed' %}
+
+            <span class="order-status-badge status-confirmed">
+              {{ order.get_order_status_display }}
+            </span>
+
+            {% elif order.order_status == 'processing' %}
+
+            <span class="order-status-badge status-processing">
+              {{ order.get_order_status_display }}
+            </span>
+
+            {% elif order.order_status == 'shipped' %}
+
+            <span class="order-status-badge status-shipped">
+              {{ order.get_order_status_display }}
+            </span>
+
+            {% elif order.order_status == 'delivered' %}
+
+            <span class="order-status-badge status-delivered">
+              {{ order.get_order_status_display }}
+            </span>
+
+            {% elif order.order_status == 'cancelled' %}
+
+            <span class="order-status-badge status-cancelled">
+              {{ order.get_order_status_display }}
+            </span>
+
+            {% endif %}
           </div>
         </div>
 
-        <!-- Delivery Details -->
-        <div class="border rounded p-4 bg-white">
-          <h2 class="h4 fw-bold mb-4">Delivery Details</h2>
+        <!-- Back Button -->
 
-          <p class="mb-2">
-            <strong>Name:</strong>
-            {{ order.customer_name }}
-          </p>
-
-          <p class="mb-2">
-            <strong>Address:</strong>
-            {{ order.address }}
-          </p>
-
-          <p class="mb-2">
-            <strong>City:</strong>
-            {{ order.city }}
-          </p>
-
-          <p class="mb-2">
-            <strong>State:</strong>
-            {{ order.state }}
-          </p>
-
-          <p class="mb-0">
-            <strong>Pincode:</strong>
-            {{ order.pincode }}
-          </p>
-        </div>
+        <a href="{% url 'my_orders' %}" class="btn order-back-btn w-100">
+          ← Back to My Orders
+        </a>
       </div>
-    </div>
-
-    <div class="mt-4">
-      <a href="{% url 'my_orders' %}" class="btn product-button">
-        Back to My Orders
-      </a>
     </div>
   </div>
 </section>

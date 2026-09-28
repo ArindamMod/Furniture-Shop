@@ -4,34 +4,109 @@
 
 {% block content %}
 
-<section class="py-5">
+<section class="py-5 category-page">
+
     <div class="container">
 
-        <div class="text-center mb-5">
-            <h1 class="fw-bold">Shop by Category</h1>
-            <p class="text-muted">
-                Explore furniture for every room in your home.
+        <!-- Page Heading -->
+
+        <div class="text-center category-page-heading">
+
+            <p class="text-uppercase fw-semibold text-muted mb-2">
+                Our Collection
             </p>
+
+            <h1 class="fw-bold">
+                Shop by Category
+            </h1>
+
+            <p class="text-muted category-page-subtitle">
+                Find the right furniture for every space.
+            </p>
+
         </div>
+
+
+        <!-- Category Cards -->
 
         <div class="row g-4">
 
-            {% for category in categories %}
+            {% for item in category_cards %}
 
             <div class="col-12 col-sm-6 col-lg-3">
 
-                <a href="{% url 'category_products' category.id %}"
-                   class="text-decoration-none">
+                <a
+                    href="{% url 'category_products' item.category.id %}"
+                    class="text-decoration-none category-card-link"
+                >
 
-                    <div class="product-card border rounded p-4 h-100 text-center">
+                    <div class="product-card border rounded p-4 h-100 text-center category-card">
+
+                        <!-- Category Image -->
+
+                        <div class="category-image-wrapper">
+
+                            {% if item.image_product and item.image_product.image %}
+
+                                <img
+                                    src="{{ item.image_product.image.url }}"
+                                    alt="{{ item.category.name }}"
+                                    class="category-image"
+                                >
+
+                            {% else %}
+
+                                <div class="category-image-placeholder">
+                                    No Image
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- Category Name -->
 
                         <h3 class="h4 fw-bold mb-3">
-                            {{ category.name }}
+                            {{ item.category.name }}
                         </h3>
 
-                        <p class="text-muted mb-0">
-                            Explore {{ category.name }} furniture
+
+                        <!-- Description -->
+
+                        <p class="text-muted mb-3">
+
+                            {% if item.category.name == "Living Room" %}
+                                Sofas, chairs and more.
+                            {% elif item.category.name == "Bedroom" %}
+                                Beds, tables and storage.
+                            {% elif item.category.name == "Dining" %}
+                                Tables and dining chairs.
+                            {% elif item.category.name == "Office" %}
+                                Desks, chairs and storage.
+                            {% else %}
+                                Explore {{ item.category.name }} furniture.
+                            {% endif %}
+
                         </p>
+
+
+                        <!-- Product Count -->
+
+                        <span class="category-product-count">
+                            {{ item.category.products.count }} Products
+                        </span>
+
+
+                        <!-- Explore Button -->
+
+                        <div class="category-card-action">
+
+                            <span>
+                                Explore →
+                            </span>
+
+                        </div>
 
                     </div>
 
@@ -42,16 +117,46 @@
             {% empty %}
 
             <div class="col-12 text-center">
+
                 <p class="text-muted">
                     No categories available.
                 </p>
+
             </div>
 
             {% endfor %}
 
         </div>
 
+
+        <!-- Full Collection CTA -->
+
+        <div class="category-collection-cta text-center">
+
+            <p class="text-uppercase fw-semibold text-muted mb-2">
+                Discover More
+            </p>
+
+            <h2 class="fw-bold mb-3">
+                Explore Our Full Collection
+            </h2>
+
+            <p class="text-muted mb-4">
+                Browse our complete range of furniture designed
+                for comfortable and modern living.
+            </p>
+
+            <a
+                href="{% url 'product_list' %}"
+                class="btn product-button"
+            >
+                View All Products
+            </a>
+
+        </div>
+
     </div>
+
 </section>
 
 {% endblock %}

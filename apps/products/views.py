@@ -64,11 +64,37 @@ def category_products(request, pk):
     )
 
 def category_list(request):
+
     categories = Category.objects.all()
+
+    category_images = {
+        'Living Room': 'Modern Sofa',
+        'Bedroom': 'King Size Bed',
+        'Dining': 'Dining Table',
+        'Office': 'Office Desk',
+    }
+
+    category_cards = []
+
+    for category in categories:
+
+        image_product_name = category_images.get(category.name)
+
+        image_product = None
+
+        if image_product_name:
+            image_product = Product.objects.filter(
+                name=image_product_name,
+                category=category
+            ).first()
+
+        category_cards.append({
+            'category': category,
+            'image_product': image_product,
+        })
 
     return render(
         request,
         'products/category_list.html',
-        {'categories': categories}
+        {'category_cards': category_cards}
     )
-

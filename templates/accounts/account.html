@@ -1,41 +1,57 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block title %}My Account{% endblock %} 
+{% block content %}
 
-<section class="py-5">
+<section class="py-5 account-page">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-6">
-        <div class="border rounded p-4 bg-white">
-          <div class="text-center mb-4">
-            <h1 class="h3 fw-bold">My Account</h1>
+        <div class="account-card border rounded bg-white">
+          <!-- Header -->
 
-            <p class="text-muted">Welcome back, {{ user.username }}.</p>
+          <div class="account-header text-center">
+            <p class="text-uppercase fw-semibold text-muted mb-2">Account</p>
+
+            <h1 class="fw-bold">My Account</h1>
+
+            <p class="text-muted mb-0">Welcome back, {{ user.username }}.</p>
           </div>
 
-          <div class="mb-3">
-            <strong>Username:</strong>
-            {{ user.username }}
+          <!-- Account Information -->
+
+          <div class="account-info">
+            <div class="account-info-item">
+              <span class="account-label"> Username </span>
+
+              <strong> {{ user.username }} </strong>
+            </div>
+
+            <div class="account-info-item">
+              <span class="account-label"> Email </span>
+
+              <strong> {{ user.email|default:"Not provided" }} </strong>
+            </div>
           </div>
 
-          <div class="mb-4">
-            <strong>Email:</strong>
-            {{ user.email }}
-          </div>
+          <!-- Account Actions -->
 
-          <div class="d-grid mb-3">
-            <a href="{% url 'my_orders' %}" class="btn btn-outline-secondary">
+          <div class="account-actions">
+            <a
+              href="{% url 'my_orders' %}"
+              class="btn btn-outline-secondary w-100"
+            >
               My Orders
             </a>
-          </div>
-          <div class="d-grid mb-3">
+
             <a
               href="{% url 'change_password' %}"
-              class="btn btn-outline-secondary"
+              class="btn btn-outline-secondary w-100"
             >
               Change Password
             </a>
-          </div>
-          <div class="d-grid">
-            <a href="{% url 'logout' %}" class="btn hero-button"> Logout </a>
+
+            <a href="{% url 'logout' %}" class="btn hero-button w-100">
+              Logout
+            </a>
           </div>
         </div>
       </div>
