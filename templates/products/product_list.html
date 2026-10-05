@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static product_tags %}
 {% block title %}Products{% endblock %}
 
 {% block content %}
@@ -38,7 +38,7 @@
     {% if product.image %}
 
         <img
-            src="{{ product.image.url }}"
+            src="{% static product|product_image %}"
             alt="{{ product.name }}"
             class="img-fluid product-image"
         >

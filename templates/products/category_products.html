@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static product_tags %} {% block content %}
 
 <section class="py-5">
   <div class="container">
@@ -22,7 +22,7 @@
               {% if product.image %}
 
               <img
-                src="{{ product.image.url }}"
+                src="{% static product|product_image %}"
                 alt="{{ product.name }}"
                 class="img-fluid product-image"
               />

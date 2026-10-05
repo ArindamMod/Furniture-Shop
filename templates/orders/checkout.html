@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static product_tags %} {% block content %}
 
 <section class="checkout-page py-5">
   <div class="container">
@@ -267,7 +267,7 @@
                 {% if item.product.image %}
 
                 <img
-                  src="{{ item.product.image.url }}"
+                  src="{% static item.product|product_image %}"
                   alt="{{ item.product.name }}"
                 />
 

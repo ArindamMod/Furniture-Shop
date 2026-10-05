@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static product_tags %}
 {% block title %}Categories{% endblock %}
 
 {% block content %}
@@ -49,7 +49,7 @@
                             {% if item.image_product and item.image_product.image %}
 
                                 <img
-                                    src="{{ item.image_product.image.url }}"
+                                    src="{% static item.image_product|product_image %}"
                                     alt="{{ item.category.name }}"
                                     class="category-image"
                                 >

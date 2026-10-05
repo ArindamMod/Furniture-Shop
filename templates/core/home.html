@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block title %}Home | Furniture Shop{% endblock %}
-{% block content %} {% load static %}
+{% block content %} {% load static %} {% load static product_tags %}
 <!-- Hero Section -->
 <section id="hero" class="hero py-5">
   <div class="container">
@@ -165,7 +165,7 @@
               {% if product.image %}
 
               <img
-                src="{{ product.image.url }}"
+                src="{% static product|product_image %}"
                 alt="{{ product.name }}"
                 class="img-fluid product-image"
               />
